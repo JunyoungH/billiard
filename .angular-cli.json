@@ -19,9 +19,12 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../node_modules/uikit/dist/css/uikit.min.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/uikit/dist/js/uikit.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

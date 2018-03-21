@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { BilliyardComponent } from './billiyard/billiyard.component';
+import { QueListComponent } from './que-list/que-list.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  
 }
+
