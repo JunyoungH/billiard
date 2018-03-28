@@ -1,0 +1,54 @@
+.table-num{
+    border: 1px solid #e5e5e5;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 1em;
+    color: gray;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-bottom: none !important;
+}
+
+select, input{
+    border-bottom: none;
+}
+
+.result-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background: rgb(161, 84, 212);
+    color: white;
+    min-height: 199px;
+    transition: background 0.1s;
+    cursor: pointer;
+}
+
+.result-box:hover{
+    background: rgb(128, 70, 167);
+}
+
+.start-time{
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.player{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+button{
+    
+    background: #9ba3e2;
+    color: white;
+    font-weight: bold;
+    transition:  background 0.1s;
+}
+
+button:hover{
+    background: #848bbd;
+}

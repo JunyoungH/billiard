@@ -1,41 +1,45 @@
-import { Component, OnInit } from '@angular/core';
-import { element } from 'protractor';
+import { Component, OnInit, Output, Input, EventEmitter, Directive } from '@angular/core';
+import { Result } from '../model/result.model';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-billiyard',
   templateUrl: './billiyard.component.html',
   styleUrls: ['./billiyard.component.css']
 })
+@Directive({selector:'app-billiyard'})
 export class BilliyardComponent implements OnInit {
 
+  @Output() submitData = new EventEmitter<Result>();
+  @Input() href:string;
+  @Input() datas:Result[];
+  @Input() uId:string;
 
-  mins = [];
-  secs = [];
+  hours = [];
+  minutes = [];
   tables = [1,2,3,4,5];
-
-
-  min = 12;
-  sec = 60;
-
-  newNum:String;
-  mBind:String;
-  sBind:String;
-  dBind = 'AM';
-
+  hour = 12;
+  minute = 60;
+  result:Result = new Result();
+  newNum:string;
   hidden = false;
+  listIndex:number;
+  
+  dataResult:Result[];
 
-  constructor() { }
-
+  constructor(private router:Router) {}
+  
   ngOnInit() {
+    this.result.tableNum = this.uId;
+    this.result.submitFlag = false;
+    this.result.day = 'AM';
 
-    for(let i=0; i<this.min; i++)
-      this.mins[i] = this.makeTwoDigit(i+1);
-    
-    for(let i=0; i<this.sec; i++)
-      this.secs[i] = this.makeTwoDigit(i);
+   this.hours = Array.from({length:this.hour}, (v, k)=> this.makeTwoDigit(k+1));
+   this.minutes = Array.from({length:this.minute},(v, k)=>this.makeTwoDigit(k));
 
-      this.mBind = this.mins[0];
-      this.sBind = this.secs[0];
+      this.result.hour = this.hours[0];
+      this.result.minute = this.minutes[0];
 
   }
 
@@ -46,9 +50,34 @@ export class BilliyardComponent implements OnInit {
   }
 
 
-  toggleHidden(param){
+  submit(param){
     
-    this.hidden = !param;
+    this.result.submitFlag = !param;
+
+    if(this.result.guestName === undefined || this.result.guestName === ""){
+      this.result.guestName = "Guest";
+    }
+    this.sendData();
+
+  }
+
+
+  exitGuest(param){
+    this.result.submitFlag = !param;
+    this.result.guestName = "";
+  }
+
+  sendData(){
+
+    this.result.awaiterLists.splice(this.listIndex, 1);
+    this.submitData.emit(this.result);
+    console.log(this.result);
+  
+  }
+
+  onChange(param){
+    this.result.guestName = this.result.awaiterLists[param];
+    this.listIndex = param;
   }
 
 }

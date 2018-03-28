@@ -1,34 +1,58 @@
 
-  <div class="time-box" [hidden]="hidden" id="1">
-    <div class="comment">
-      Insert start time.
+  
+  <div class="admin-view uk-card uk-card-default" *ngIf="href=='admin'" [hidden]="result.submitFlag" id="1">
+    <div class="table-num">
+      <span>Table No.{{result.tableNum}} </span>
+    
     </div>
-    <div class="time" style="display: flex">
+    <div class="uk-flex-column" style="display: flex">
+      <div class="uk-inline">     
+        <input type="text" class="uk-input" [(ngModel)]="result.guestName" placeholder="Enter player name" maxlength="10">
+        <span class="uk-form-icon" uk-icon="icon: user"></span>
+      </div>
+     
+      <select class="uk-select" [(ngModel)]="listIndex" (ngModelChange)="onChange($event)">
+        <option [value]="defualt">---Select palyer---</option>
+        <option *ngFor="let awaiter of result.awaiterLists; let i = index" [value]="i">
+          {{awaiter}}
+        </option>
+      </select>
       
-      <select class="uk-select" [(ngModel)]="dBind">
-        <option value="AM">AM</option>
-        <option value="PM">PM</option>
-      </select>
+      <div class="uk-flex">
+        <select class="uk-select" [(ngModel)]="result.day">
+          <option value="AM" select>AM</option>
+          <option value="PM">PM</option>
+        </select>
 
-      <select class="uk-select" [(ngModel)]="mBind">
-        <option *ngFor="let min of mins">
-          {{min}}
-        </option>
-      </select>
+        <select class="uk-select" [(ngModel)]="result.hour" style="border-left:none; border-right: none;">
+          <option *ngFor="let hour of hours">
+            {{hour}}
+          </option>
+        </select>
 
-      <select class="uk-select" [(ngModel)]="sBind">
-        <option *ngFor="let sec of secs">
-          {{sec}}
-        </option>
-      </select>
+        <select class="uk-select" [(ngModel)]="result.minute">
+          <option *ngFor="let minute of minutes">
+            {{minute}}
+          </option>
+        </select>
+       </div>
     </div>
-
-    <button class="uk-button" style="width: 100%" (click)="toggleHidden(hidden)">Submit</button>
+    <div>
+      <button class="uk-button" style="width: 100%" (click)="submit(result.submitFlag)">Submit</button>
+    </div>
   </div>
 
-    <div class="result-box uk-flex uk-flex-column" uk-grid [hidden]=!hidden (click)=toggleHidden(hidden)>
-      <div>Starting!</div>
-      <div class="time-result">
-        <span>{{dBind}}</span><span>{{mBind}}</span>:<span>{{sBind}}</span>
-      </div>
-    </div>
+
+
+  <div class="result-box uk-card uk-card-default " uk-tooltip="title: Out; offset:-10; pos:top-right" [hidden]="!result.submitFlag" (click)=exitGuest(result.submitFlag)>
+    
+      <div>Started at <span class="start-time">{{result.day}} {{result.hour}} : {{result.minute}} </span> </div>
+      <div>Player is <span class="player">{{result.guestName}}</span></div>
+ 
+  </div>
+
+
+
+
+
+  

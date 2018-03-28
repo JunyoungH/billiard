@@ -1,0 +1,70 @@
+.list-container{
+    position: relative;
+}
+
+.que-table{
+    position: absolute;
+    max-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: flex-start;
+    padding-left: 1em;
+}
+
+.que-block{
+    margin-top: 1em;
+    margin-right: 1.2em;
+}
+
+.close-button{
+    padding: 0 10px; 
+    font-size: .275rem;    
+    line-height: 10px;     
+    color: white;
+    font-weight: bold;
+    background: #ff5454;
+}
+
+.que-name{
+    padding-left: 1em;
+    padding-right: 1em;
+    border-bottom: 0.01em solid gainsboro;
+}
+
+.que-num{
+    background: #ababab;
+    color: white;
+    font-weight: bold;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.que-list{
+    margin-left: 0.9em;
+}
+
+button{
+    
+    background: #9ba3e2;
+    color: white;
+    font-weight: bold;
+    transition:  background 0.1s;
+}
+
+button:hover{
+    background: #848bbd;
+}
+
+.close-button:hover{
+    background:red;
+}
+
+.error{
+    border :1px solid #ff5454 !important;
+    
+}
+
+.error::-webkit-input-placeholder{
+    color: #ff5454;
+}

@@ -1,17 +1,17 @@
-<div class="uk-container uk-expand">
-    <div class="uk-flex uk-flex-column">
-        1번
-        <app-billiyard class="uk-flex uk-column"></app-billiyard>
-        2번
-        <app-billiyard class="uk-flex uk-column"></app-billiyard>
-        3번
-        <app-billiyard class="uk-flex uk-column"></app-billiyard>
-        4번
-        <app-billiyard class="uk-flex uk-column"></app-billiyard>
-        5번
-        <app-billiyard class="uk-flex uk-column"></app-billiyard>
 
 
-        <app-que-list></app-que-list>
+
+    <div class="uk-container uk-container-expand" id="main-page" [@enterRomm]="state" *ngIf="showMenu | async">
+        <div class="uk-card uk-text-center">
+            <a routerLink="/admin"><button class="uk-button" (click)="toggleState()">Admin</button></a>
+            <a routerLink="/guest"><button class="uk-button" (click)="toggleState()">Guest</button></a>
+        </div>
     </div>
-</div>
+  
+  
+
+<router-outlet>
+
+
+</router-outlet>
+

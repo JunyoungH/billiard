@@ -1,4 +1,17 @@
-app-billiyard{
-    padding-bottom: 2em;
-    
+#main-page{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgb(59, 221, 108)
 }
+
+.uk-button{
+    cursor: pointer;
+    height: 4em;
+    width: 10em;
+    color: #6b5e5e;
+    font-weight: bold;
+    font-size: 2em;
+}
+

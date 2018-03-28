@@ -1,0 +1,15 @@
+.que{
+    background: white;
+    margin-left: 1em;
+}
+
+.uk-grid>.uk-grid-margin{
+    margin-top: 15px !important;
+}
+
+.que-title{
+    font-weight: bold; 
+    color: gray;
+    font-size: 1.5em;
+    border-bottom: 0.01em solid #d0cfcf;
+}
