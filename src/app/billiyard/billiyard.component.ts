@@ -1,14 +1,15 @@
 import { Component, OnInit, Output, Input, EventEmitter, Directive } from '@angular/core';
 import { Result } from '../model/result.model';
 import { Router } from '@angular/router';
+import { hideShowAnimation } from '../animations/hide-show';
 
 
 @Component({
   selector: 'app-billiyard',
   templateUrl: './billiyard.component.html',
-  styleUrls: ['./billiyard.component.css']
+  styleUrls: ['./billiyard.component.css'],
+  animations: [hideShowAnimation]
 })
-@Directive({selector:'app-billiyard'})
 export class BilliyardComponent implements OnInit {
 
   @Output() submitData = new EventEmitter<Result>();
@@ -38,9 +39,12 @@ export class BilliyardComponent implements OnInit {
    this.hours = Array.from({length:this.hour}, (v, k)=> this.makeTwoDigit(k+1));
    this.minutes = Array.from({length:this.minute},(v, k)=>this.makeTwoDigit(k));
 
-      this.result.hour = this.hours[0];
-      this.result.minute = this.minutes[0];
+  this.result.hour = this.hours[0];
+  this.result.minute = this.minutes[0];
 
+    if(localStorage.getItem("table"+this.uId)){
+      this.result = JSON.parse(localStorage.getItem("table"+this.uId));
+    }
   }
 
   makeTwoDigit(num):String{
@@ -49,35 +53,34 @@ export class BilliyardComponent implements OnInit {
     return  this.newNum=tempNum.slice(-2);
   }
 
-
   submit(param){
     
     this.result.submitFlag = !param;
 
-    if(this.result.guestName === undefined || this.result.guestName === ""){
+    if(!this.result.guestName){
       this.result.guestName = "Guest";
     }
+    localStorage.setItem("table"+this.uId, JSON.stringify(this.result));
     this.sendData();
 
   }
 
-
   exitGuest(param){
     this.result.submitFlag = !param;
     this.result.guestName = "";
+    localStorage.removeItem("table"+this.uId);
+    this.submitData.emit(this.result);
   }
 
-  sendData(){
-
+  sendData(){ 
+    if(this.result.guestName!=="Guest"){
     this.result.awaiterLists.splice(this.listIndex, 1);
+    }
     this.submitData.emit(this.result);
-    console.log(this.result);
-  
   }
 
   onChange(param){
     this.result.guestName = this.result.awaiterLists[param];
     this.listIndex = param;
   }
-
 }

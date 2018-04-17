@@ -1,12 +1,12 @@
   
       <div class="result-box">
-          <div class="start{{uId}} uk-flex-column play-box" [hidden]=true>
+          <div class="start uk-flex-column play-box" [hidden]=!hidden [@hideShowAnimation]=!hidden>
 
           <div>No.{{uId}} Playing!</div>
           <div>Started at <span style="font-size:1.4em; font-weight:bold;">{{result.day}} {{result.hour}} : {{result.minute}}</span></div>
           <div>Player is <span style="font-size:1.4em; font-weight:bold;">{{result.guestName}}</span></div>
         </div>
-        <div class="ready{{uId}}" style="font-size: 2.6em; font-weight: bold;">
+        <div class="ready" style="font-size: 2.6em; font-weight: bold;" [hidden]=hidden [@hideShowAnimation]=hidden>
          No.{{uId}}  READY
         </div>
       </div>

@@ -6,7 +6,6 @@ import { Result } from '../model/result.model';
   templateUrl: './que-list.component.html',
   styleUrls: ['./que-list.component.css']
 })
-@Directive({selector:'app-que-list'})
 export class QueListComponent implements OnInit {
   constructor() { }
 
@@ -23,7 +22,10 @@ export class QueListComponent implements OnInit {
     if(this.href == 'guest'){
       this.hidden =true;
     }
-      
+
+    if(localStorage.getItem("queList")){
+      this.result.awaiterLists = JSON.parse(localStorage.getItem("queList"));
+    }    
   }
 
   waitListSubmit(param){
@@ -35,15 +37,12 @@ export class QueListComponent implements OnInit {
       this.border = false;
       this.result.awaiterLists.push(param);
       this.submitList.emit(this.result);
-    }
 
+    }
   }
 
   delist(deleteParam){
     this.result.awaiterLists.splice(deleteParam, 1);
     this.submitList.emit(this.result);
   }
-
-
-
 }

@@ -1,15 +1,6 @@
 
 
 
-    <div class="uk-container uk-container-expand" id="main-page" [@enterRomm]="state" *ngIf="showMenu | async">
-        <div class="uk-card uk-text-center">
-            <a routerLink="/admin"><button class="uk-button" (click)="toggleState()">Admin</button></a>
-            <a routerLink="/guest"><button class="uk-button" (click)="toggleState()">Guest</button></a>
-        </div>
-    </div>
-  
-  
-
 <router-outlet>
 
 

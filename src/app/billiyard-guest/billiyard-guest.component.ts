@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, Input, Directive} from '@angular/core';
+import { Component, OnInit, Output, Input, Directive, AfterViewInit} from '@angular/core';
 import { Result } from '../model/result.model';
+import { hideShowAnimation } from '../animations/hide-show';
 
 var id = 0;
 
@@ -7,39 +8,39 @@ var id = 0;
   selector: 'app-billiyard-guest',
   templateUrl: './billiyard-guest.component.html',
   styleUrls: ['./billiyard-guest.component.css'],
+  animations: [hideShowAnimation]
 })
-@Directive({selector: 'app-billiyard-guest'})
-export class BilliyardGuestComponent{
+export class BilliyardGuestComponent implements OnInit{
 
-  public uId = ++id;
+  @Input() uId;
 
-  
   result:Result = new Result();
-  numbers:number[];
+  hidden:boolean;
 
-  hidden = false;
+  constructor() {}
 
-  constructor() {
-    this.numbers = Array(5).fill(0).map((x,i)=>i+1);
+  ngOnInit(){
+    console.log("table"+this.uId);
+    console.log(localStorage.getItem("table"+this.uId));
+   
+    if(localStorage.getItem("table"+this.uId)){
+      this.result = JSON.parse(localStorage.getItem("table"+this.uId));
+      
+      console.log(this.result.submitFlag);
+      this.hidden = this.result.submitFlag;
    }
-
-   ngOnInit(){
-     
-   }
+  }
 
   receiveData(message){
 
     this.result = message;
+    localStorage.setItem("table"+this.result.tableNum, JSON.stringify(this.result));
 
-    if(this.result.guestName === undefined || this.result.guestName === ""){
+    if(!this.result.guestName){
       this.result.guestName = "Guest";
     }
 
-    let start = document.querySelector(".start"+this.uId) as HTMLElement;
-    let ready = document.querySelector(".ready"+this.uId) as HTMLElement;
-    start.hidden = !this.result.submitFlag;
-    ready.hidden = this.result.submitFlag;
-  }
-  
+    this.hidden = this.result.submitFlag;
 
+  }
 }

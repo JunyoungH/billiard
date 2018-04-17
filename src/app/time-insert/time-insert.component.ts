@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChildren, QueryList, ViewChild} from '@angular/c
 import { BilliyardComponent } from '../billiyard/billiyard.component';
 import { BilliyardGuestComponent } from '../billiyard-guest/billiyard-guest.component';
 import { QueListComponent } from '../que-list/que-list.component'; 
-import { MainService } from '../main.service';
  
 import { Router } from '@angular/router';
 import { Result } from '../model/result.model';
@@ -10,11 +9,14 @@ import * as Stomp from 'stompjs';
 import * as Sockjs from 'sockjs-client';
 import { JsonPipe } from '@angular/common';
 import { element, by } from 'protractor';
+import { fadeInAnimation } from '../animations/fade-in';
 
 @Component({
   selector: 'app-time-insert',
   templateUrl: './time-insert.component.html',
-  styleUrls: ['./time-insert.component.css']
+  styleUrls: ['./time-insert.component.css'],
+  animations: [fadeInAnimation],
+  host: {'[@fadeInAnimation]':''}
 })
 export class TimeInsertComponent implements OnInit {
 
@@ -31,7 +33,9 @@ export class TimeInsertComponent implements OnInit {
 
   numbers:any;
 
-  constructor(private router:Router, private mainService:MainService){}
+
+  local:string = "http://localhost:8080/greeting";
+  constructor(private router:Router){}
   
   ngOnInit(){
 
@@ -40,7 +44,7 @@ export class TimeInsertComponent implements OnInit {
 
     console.log("href is "+ this.href);
 
-    let socket = new Sockjs("http://localhost:8080/greeting");
+    let socket = new Sockjs(this.local);
     this.ws = Stomp.over(socket);
     let that = this;
     this.ws.connect({},(frame)=>{
@@ -65,28 +69,22 @@ export class TimeInsertComponent implements OnInit {
   //   console.log("Disconnected");
   // }
 
-
-  ngAfterViewInit(){
-    this.mainService.setShowMenu(false);
-  }
-
   sendName(result){
     
     let data = JSON.stringify(result);
-  
     this.ws.send("/app/message", {}, data);
-    console.log(data);
+    console.log("data:"+data);
+    
   }
 
   showGreeting(message){
     this.adminComopnent.forEach(data => data.result.awaiterLists = message.awaiterLists);
+
     this.queList.result.awaiterLists = message.awaiterLists;
+    localStorage.setItem("queList", JSON.stringify(this.queList.result.awaiterLists));
 
     let guestComponent = this.guest.find( data => data.uId == message.tableNum);
 
       guestComponent.receiveData(message);
- 
   }
-
-
 }

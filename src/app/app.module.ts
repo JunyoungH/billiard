@@ -10,8 +10,8 @@ import { TimeInsertComponent } from './time-insert/time-insert.component';
 import { AppRoutingModule } from './app.routing.module';
 import { BilliyardGuestComponent } from './billiyard-guest/billiyard-guest.component';
 import { QueListComponent } from './que-list/que-list.component';
+import { MainRoutingComponent } from './main-routing/main-routing.component';
 
-import { MainService } from './main.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,8 @@ import { MainService } from './main.service';
     BilliyardComponent,
     TimeInsertComponent,
     BilliyardGuestComponent,
-    QueListComponent
+    QueListComponent,
+    MainRoutingComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +28,7 @@ import { MainService } from './main.service';
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [MainService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
