@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter, Directive } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, Directive, AfterViewChecked, AfterContentChecked, DoCheck, AfterContentInit } from '@angular/core';
 import { Result } from '../model/result.model';
 import { Router } from '@angular/router';
 import { hideShowAnimation } from '../animations/hide-show';
@@ -25,6 +25,7 @@ export class BilliyardComponent implements OnInit {
   result:Result = new Result();
   newNum:string;
   hidden = false;
+
   listIndex:number;
   
   dataResult:Result[];
@@ -36,14 +37,19 @@ export class BilliyardComponent implements OnInit {
     this.result.submitFlag = false;
     this.result.day = 'AM';
 
-   this.hours = Array.from({length:this.hour}, (v, k)=> this.makeTwoDigit(k+1));
-   this.minutes = Array.from({length:this.minute},(v, k)=>this.makeTwoDigit(k));
+    this.hours = Array.from({length:this.hour}, (v, k)=> this.makeTwoDigit(k+1));
+    this.minutes = Array.from({length:this.minute},(v, k)=>this.makeTwoDigit(k));
 
-  this.result.hour = this.hours[0];
-  this.result.minute = this.minutes[0];
+    this.result.hour = this.hours[0];
+    this.result.minute = this.minutes[0];
 
     if(localStorage.getItem("table"+this.uId)){
+      console.log(localStorage.getItem("table"+this.uId));
       this.result = JSON.parse(localStorage.getItem("table"+this.uId));
+    }
+
+    if(localStorage.getItem("queList")){
+      this.result.awaiterLists = JSON.parse(localStorage.getItem("queList"));
     }
   }
 
@@ -76,6 +82,7 @@ export class BilliyardComponent implements OnInit {
     if(this.result.guestName!=="Guest"){
     this.result.awaiterLists.splice(this.listIndex, 1);
     }
+    
     this.submitData.emit(this.result);
   }
 
@@ -83,4 +90,5 @@ export class BilliyardComponent implements OnInit {
     this.result.guestName = this.result.awaiterLists[param];
     this.listIndex = param;
   }
+
 }

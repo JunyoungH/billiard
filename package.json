@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build  --prod --base-href=https://junyoungh.github.io/billiyard/",
+    "build": "ng build  --prod --base-href=http://localhost:8080/billiard/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

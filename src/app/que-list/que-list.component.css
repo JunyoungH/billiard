@@ -13,13 +13,14 @@
 }
 
 .que-block{
-    margin-top: 1em;
+    margin-top: 0.56em;
     margin-right: 1.2em;
+    font-size:1.07em;
 }
 
 .close-button{
     padding: 0 10px; 
-    font-size: .275rem;    
+    font-size: 10px;    
     line-height: 10px;     
     color: white;
     font-weight: bold;
@@ -29,11 +30,12 @@
 .que-name{
     padding-left: 1em;
     padding-right: 1em;
-    border-bottom: 0.01em solid gainsboro;
+    border-bottom: 0.01em solid #ffc864;
+    color: #283237;
 }
 
 .que-num{
-    background: #ababab;
+    background: #ffc864;
     color: white;
     font-weight: bold;
     padding-left: 0.5em;

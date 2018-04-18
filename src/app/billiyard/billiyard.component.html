@@ -8,7 +8,6 @@
     <div class="uk-flex-column" style="display: flex">
       <div class="uk-inline">     
         <input type="text" class="uk-input" [(ngModel)]="result.guestName" placeholder="Enter player name" maxlength="10">
-        <span class="uk-form-icon" uk-icon="icon: user"></span>
       </div>
      
       <select class="uk-select" [(ngModel)]="listIndex" (ngModelChange)="onChange($event)">
@@ -50,9 +49,6 @@
       <div>Player is <span class="player">{{result.guestName}}</span></div>
  
   </div>
-
-
-
 
 
   

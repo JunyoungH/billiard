@@ -5,5 +5,6 @@ export class Result{
     minute:string;
     guestName:string; 
     submitFlag:boolean;
+    resetFlag:boolean;
     awaiterLists:string[] =[];
 }

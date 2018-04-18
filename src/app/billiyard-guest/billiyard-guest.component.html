@@ -1,14 +1,22 @@
-  
-      <div class="result-box">
-          <div class="start uk-flex-column play-box" [hidden]=!hidden [@hideShowAnimation]=!hidden>
 
-          <div>No.{{uId}} Playing!</div>
-          <div>Started at <span style="font-size:1.4em; font-weight:bold;">{{result.day}} {{result.hour}} : {{result.minute}}</span></div>
-          <div>Player is <span style="font-size:1.4em; font-weight:bold;">{{result.guestName}}</span></div>
+      <div class="result-box">
+
+        <div class="play-box" [hidden]=!hidden [@hideShowAnimation]=!hidden>
+           
+          <div class="play-table"><span>TABLE</span><span>{{uId}}</span></div>
+          <div class="play-detail">
+            <span>{{result.guestName}}</span>
+            <span>PLAYING FOR</span> 
+            <span> {{hrDiff}}H {{minDiff}}M</span>
+
+          </div>
         </div>
-        <div class="ready" style="font-size: 2.6em; font-weight: bold;" [hidden]=hidden [@hideShowAnimation]=hidden>
-         No.{{uId}}  READY
+        <div class="ready uk-flex" [hidden]=hidden [@hideShowAnimation]=hidden>
+         <div class="ready-table"><span>TABLE</span><span>{{uId}}</span></div>  
+         <div class="ready-detail">AVAILABLE</div>
         </div>
       </div>
+
+      
 
  

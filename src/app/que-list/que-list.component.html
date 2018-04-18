@@ -1,7 +1,7 @@
 <div class="list-container">
   
   <div class="que-list uk-flex" [hidden]="hidden">
-    <input type="text" [ngClass]="{'error':border===true}" style="padding-left: 0.5em;" [(ngModel)]="awaiter" maxlength="10" placeholder="Insert guest name">
+    <input type="text" class="uk-input" (keyup.enter)="waitListSubmit(awaiter)" [ngClass]="{'error':border===true}" style="padding-left: 0.5em; width:50%;" [(ngModel)]="awaiter" maxlength="10" placeholder="Insert guest name">
     <button class="uk-button" (click)="waitListSubmit(awaiter)">Submit</button>
   </div>
   <div class="que-table" >

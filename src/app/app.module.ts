@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { BilliyardGuestComponent } from './billiyard-guest/billiyard-guest.component';
 import { QueListComponent } from './que-list/que-list.component';
 import { MainRoutingComponent } from './main-routing/main-routing.component';
+import { MenuEditComponent } from './menu-edit/menu-edit.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MainRoutingComponent } from './main-routing/main-routing.component';
     TimeInsertComponent,
     BilliyardGuestComponent,
     QueListComponent,
-    MainRoutingComponent
+    MainRoutingComponent,
+    MenuEditComponent
   ],
   imports: [
     BrowserModule,

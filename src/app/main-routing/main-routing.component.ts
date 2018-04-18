@@ -12,7 +12,13 @@ import { fadeInAnimation } from '../animations/fade-in';
 })
 export class MainRoutingComponent implements OnInit {
 
+  ip:string;
+  hidden:boolean = false;
+
   constructor(private router:Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
+
 }

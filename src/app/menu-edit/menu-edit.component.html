@@ -1,0 +1,69 @@
+<input type="file" id="image" [hidden]=true>
+
+<div class="container uk-container uk-container-large" >
+  <div class="uk-padding-remove" uk-grid>
+    <ng-container *ngIf="href==='admin'; else guest">
+
+    </ng-container>
+  
+  </div>
+
+    <ng-template #guest>
+    <div class="uk-width-3-4">
+      <div class="uk-flex uk-flex-column guest-container">
+        <div class="menu-container uk-flex uk-child-width-1-2" style="height:80%;">
+          <div class="menu-left" uk-slideshow="animation: fade; autoplay: true;">
+       
+              <ul class="uk-slideshow-items">
+                <li>
+                  <!-- <img src="../../assets/images/promo1.png" alt=""> -->
+                  <img src="http://localhost:8080/billiard/assets/images/promo1.png" alt=""> 
+                </li>
+                <li>
+                  <!-- <img src="../../assets/images/promo2.png" alt=""> -->
+                  <img src="http://localhost:8080/billiard/assets/images/promo2.png" alt=""> 
+                </li>
+              </ul>
+
+          
+          </div>
+          <div class="menu-right">
+            <!-- <img src="../../assets/images/menu.png"> -->
+            <img src="http://localhost:8080/billiard/assets/images/menu.png" alt=""> 
+
+
+          </div>
+        </div>
+        
+          <div class="footer">
+            <!-- <img src="../../assets/images/footer.png"> -->
+            <img src="http://localhost:8080/billiard/assets/images/footer.png" alt=""> 
+     
+          </div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="uk-flex uk-flex-column uk-width-1-4" style="padding-left:20px; opacity: 0.3;">
+      <div class="guest" uk-grid>
+        <div class="uk-card guest-wrap">
+          <div class="uk-card-header guest-title" ><span class="left">CURRENT</span> <span class="right">PLAYER</span></div> 
+
+         
+        </div>
+      </div>
+
+      <div class="que uk-card" >
+       <div class="uk-card-header que-title" ><span class="left" style="color:#ffc864; ">PLAYER</span>  <span class="right" style="color: #ff8c8c">WAITING</span></div> 
+      </div>
+    </div>
+  
+    </ng-template>
+  
+
+
+
+  
+</div>
+

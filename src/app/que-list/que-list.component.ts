@@ -37,6 +37,7 @@ export class QueListComponent implements OnInit {
       this.border = false;
       this.result.awaiterLists.push(param);
       this.submitList.emit(this.result);
+      this.awaiter = "";
 
     }
   }
