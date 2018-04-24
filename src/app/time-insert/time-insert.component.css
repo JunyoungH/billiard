@@ -9,7 +9,7 @@ body{
     position: relative;
     display: flex;
     justify-content: space-between;
-    margin-left: 0px;
+    
 }
 
 .footer-left .a, .footer-left .b .b-2 span{    

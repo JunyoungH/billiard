@@ -97,11 +97,15 @@ export class BilliyardComponent implements OnInit {
   getCurrentTime(){
     let currentTime = new Date();
     let tempHour = currentTime.getHours();
+    console.log(tempHour);
     if(tempHour>12){
       this.result.hour = (tempHour-12).toString();
       this.result.day = 'PM';
+    }else{
+      this.result.hour = tempHour===0?(12).toString():this.makeTwoDigit(tempHour).toString();
+      this.result.day = 'AM';
     }
-
+    
     this.result.minute = this.makeTwoDigit(currentTime.getMinutes()).toString();
     
   }
