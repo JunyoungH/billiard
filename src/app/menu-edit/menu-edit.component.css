@@ -3,21 +3,33 @@
 
 .container{
     max-width: 1110px;
+    display: flex;
+    position: relative;
+    margin-left: 10px;
 }
 
 .guest-container{
     max-height: 585.91px;
 }
 
-.guest{
+.image-list{
     margin: 0;
     border:0.2em #283237 solid;
-    height:50%;
+    height:100%;
+    background: black;
 }
 
 .guest-wrap{
     flex:1;
     padding:0;
+}
+
+.image-container{
+    padding-left: 20px;
+    position: absolute;
+    right: -10em;
+    width: 40%;
+    height: 100%;
 }
 
 .que{
@@ -172,7 +184,7 @@
     position: relative;
     flex-direction: column;
     justify-content: flex-end;
-    top:4px;
+    top:12px;
 
 }
 

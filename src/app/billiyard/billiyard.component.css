@@ -1,3 +1,5 @@
+
+
 .table-num{
     border: 1px solid #e5e5e5;
     height: 40px;
@@ -41,14 +43,21 @@ select, input{
     font-weight: bold;
 }
 
-button{
+button.manual{
     
-    background: #9ba3e2;
+    background: #7dbef0;
+    color: white;
+    font-weight: bold;
+    transition:  background 0.1s;
+}
+
+button.auto{
+    background: #ff8c8c;
     color: white;
     font-weight: bold;
     transition:  background 0.1s;
 }
 
 button:hover{
-    background: #848bbd;
+    background: #8493bd;
 }

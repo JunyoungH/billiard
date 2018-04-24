@@ -20,11 +20,10 @@ export class BilliyardComponent implements OnInit {
   hours = [];
   minutes = [];
   tables = [1,2,3,4,5];
-  hour = 12;
-  minute = 60;
   result:Result = new Result();
   newNum:string;
   hidden = false;
+  auto = true;
 
   listIndex:number;
   
@@ -37,8 +36,8 @@ export class BilliyardComponent implements OnInit {
     this.result.submitFlag = false;
     this.result.day = 'AM';
 
-    this.hours = Array.from({length:this.hour}, (v, k)=> this.makeTwoDigit(k+1));
-    this.minutes = Array.from({length:this.minute},(v, k)=>this.makeTwoDigit(k));
+    this.hours = Array.from({length:12}, (v, k)=> this.makeTwoDigit(k+1));
+    this.minutes = Array.from({length:60},(v, k)=>this.makeTwoDigit(k));
 
     this.result.hour = this.hours[0];
     this.result.minute = this.minutes[0];
@@ -59,13 +58,17 @@ export class BilliyardComponent implements OnInit {
     return  this.newNum=tempNum.slice(-2);
   }
 
-  submit(param){
+  submit(flag, type){
     
-    this.result.submitFlag = !param;
+    this.result.submitFlag = !flag;
 
     if(!this.result.guestName){
       this.result.guestName = "Guest";
     }
+    if(type){
+      this.getCurrentTime();
+    }
+
     localStorage.setItem("table"+this.uId, JSON.stringify(this.result));
     this.sendData();
 
@@ -80,7 +83,7 @@ export class BilliyardComponent implements OnInit {
 
   sendData(){ 
     if(this.result.guestName!=="Guest"){
-    this.result.awaiterLists.splice(this.listIndex, 1);
+      this.result.awaiterLists.splice(this.listIndex, 1);
     }
     
     this.submitData.emit(this.result);
@@ -89,6 +92,18 @@ export class BilliyardComponent implements OnInit {
   onChange(param){
     this.result.guestName = this.result.awaiterLists[param];
     this.listIndex = param;
+  }
+
+  getCurrentTime(){
+    let currentTime = new Date();
+    let tempHour = currentTime.getHours();
+    if(tempHour>12){
+      this.result.hour = (tempHour-12).toString();
+      this.result.day = 'PM';
+    }
+
+    this.result.minute = this.makeTwoDigit(currentTime.getMinutes()).toString();
+    
   }
 
 }
