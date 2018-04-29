@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { BilliyardGuestComponent } from '../billiyard-guest/billiyard-guest.component';
-import { QueListComponent } from '../que-list/que-list.component';
+import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { Observable } from 'rxjs/rx';
+import { FileUploadService } from '../service/file-upload.service';
+import { FileUpload } from '../model/fileUpload.model';
+import { MenuComponent } from './menu.component';
 
 @Component({
   selector: 'app-menu-edit',
@@ -10,40 +11,85 @@ import { Observable } from 'rxjs/rx';
 })
 export class MenuEditComponent implements OnInit {
 
-  constructor() { }
+  @ViewChildren(MenuComponent) menuComponent:QueryList<MenuComponent>;  
+
   eventTarget:any;
   imageList:Element;
+  imageListChild:any;
+  imageAddButton:Element;
+  imageBox:any;
   input:HTMLInputElement;
+  imagePreview:any;
+  imagePreviewId:string;
+  fileUpload = new FileUpload();
+  left:string = 'left';
+  right:string = 'right';
 
-  ngOnInit() {
+  imageStored:any;
+  menuImgageStored:any;
+  
+
+  constructor(private fileUploadService:FileUploadService) {}
+
+
+ngOnInit() {
 
     this.imageList = document.querySelector('.image-list');
+    this.imageAddButton = document.querySelector('.image-add');
+
     this.input = document.querySelector('input[type="file"]') as HTMLInputElement;
-
-    let dragover$ = Observable.fromEvent(this.imageList, 'dragover');
-    let dragleave$ = Observable.fromEvent(this.imageList, 'dragleave');
-    let mouseover$ = Observable.fromEvent(this.imageList, 'mouseover');
-    let mouseleave$ = Observable.fromEvent(this.imageList, 'mouseleave');
-
-    Observable.merge(dragover$, mouseover$).subscribe((event:any)=>{
-      event.preventDefault();
+    this.imagePreview = document.querySelectorAll('.menu');
+    
+    this.fileUploadService.getAll().subscribe(result=>{
+      this.imageStored=result;
+      this.imageListChild = this.imageList.children;
+      
     
     });
-
-    Observable.merge(dragleave$, mouseleave$).subscribe((event:any)=>{
+    
+    Observable.fromEvent(this.imageList, 'dragover').subscribe((event:any)=>{ 
       event.preventDefault();
+      this.imageList.classList.add('dragged');
+      if(event.target.classList[0]!=='image-list'){
+        event.target.classList.add('disableEvent');
+      }
+      
+    });
+
+    Observable.fromEvent(this.imageList, 'dragleave').subscribe((event:any)=>{
+      event.preventDefault();
+      this.imageList.classList.remove('dragged');
+      
+      console.log(event.target.classList[0]);
+      if(event.target.classList[0]==='image-list'){
+      Array.from(this.imageListChild,(value:any,key)=>  value.classList.remove('disableEvent'));
+      }
+    });
+
+
+    Observable.fromEvent(this.imageAddButton, 'mouseover').subscribe((event:any)=>{
+      event.preventDefault();
+      
+      this.imageAddButton.classList.add('dragged');
+      
+     
+    });
+
+    Observable.fromEvent(this.imageAddButton, 'mouseleave').subscribe((event:any)=>{
+      event.preventDefault();
+      this.imageAddButton.classList.remove('dragged');
     });
 
     Observable.fromEvent(this.imageList, 'drop').subscribe((event:any)=>{
       event.stopPropagation();
       event.preventDefault();
+      this.imageList.classList.remove('dragged');
       this.eventTarget = event.target;
-      console.log("target:"+event.target);
-      console.log("image:"+event.dataTransfer.files[0]);
+
       this.previewImage(event);
     });
 
-    Observable.fromEvent(this.imageList, 'click').subscribe((event:any)=>{
+    Observable.fromEvent(this.imageAddButton, 'click').subscribe((event:any)=>{
       event.preventDefault();
       this.input.click();
     });
@@ -53,26 +99,60 @@ export class MenuEditComponent implements OnInit {
       this.previewImage(event);
     });
 
+    Observable.fromEvent(this.imagePreview, 'click').subscribe((event:any)=>{
+   
+      console.log(event.currentTarget.id);
+      this.imagePreviewId = event.currentTarget.id;
+      this.imageBox = document.querySelectorAll('.image-box');
+      
+      Array.from(this.imagePreview, (value:any, key)=>value.classList.remove('clicked'));
+      event.currentTarget.classList.add('clicked');
+
+      console.log(this.imageBox);
+
+      this.setCheckValue();
+
+    });
+
   }
 
   previewImage(event){
     let file = event.dataTransfer?event.dataTransfer.files[0]:event.target.files[0];
-    let divNode = document.createElement('div');
-    let imgNode = document.createElement('img');
-    divNode.classList.add('image-frame');
-    divNode.appendChild(imgNode);
-    divNode.style.cssText='width: 100px; height: 100px; display: flex; flex-direction: column;' 
-    +'justify-content: center; border: white 0.1em solid; padding: 0; overflow:hidden';
-
-    console.log(file);
-    let reader = new FileReader();
-    reader.readAsDataURL(file); 
-    console.log(reader);
-    reader.onload = ()=>{
-      this.imageList.appendChild(divNode);
-      imgNode.src = reader.result;
-    };
+    this.fileUploadService.save(file).subscribe(
+      result => this.imageStored = result,
+      error => console.log(error)
+    );
     
   }
+
+  addImage(event){
+    let target = event.currentTarget;
+    if(this.imagePreviewId){
+      if(target.querySelector('img').id === this.imagePreviewId){
+        this.fileUpload.imageGroup = null;
+      }else{
+        this.fileUpload.imageGroup = this.imagePreviewId;
+      }
+      this.fileUpload.id = target.id;
+     
+      target.querySelector('img').id = this.fileUpload.imageGroup;
+
+      this.fileUploadService.addImageToMenu(this.fileUpload).subscribe(
+        result=> this.menuComponent.forEach(value=>value.setMenuImage()),
+        error=>console.log(error)
+    );
+
+        this.setCheckValue();
+    }
+
+  }
+
+  setCheckValue(){
+    Array.from(this.imageBox, 
+      (value:any, key)=> value.querySelector('img').id===this.imagePreviewId?
+                          value.classList.add('clicked'):value.classList.remove('clicked'));
+  }
+
+
 
 }

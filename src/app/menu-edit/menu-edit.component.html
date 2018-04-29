@@ -2,35 +2,18 @@
 
 <div class="container uk-container uk-container-large">
 
-
     <div class="uk-width-3-4">
       <div class="uk-flex uk-flex-column guest-container">
         <div class="menu-container uk-flex uk-child-width-1-2" style="height:80%;">
-          <div class="menu-left menu" uk-slideshow="animation: fade;">
-       
-              <ul class="uk-slideshow-items">
-                <li>
-                  <!-- <img src="../../assets/images/promo1.png" alt=""> -->
-                  <img src="http://localhost:8080/billiard/assets/images/promo1.png" alt=""> 
-                </li>
-                <li>
-                  <!-- <img src="../../assets/images/promo2.png" alt=""> -->
-                  <img src="http://localhost:8080/billiard/assets/images/promo2.png" alt=""> 
-                </li>
-              </ul>
-
-          
+          <div class="menu" id="left">               
+                <app-menu [id]="left"></app-menu>
           </div>
-          <div class="menu-right menu">
-            <!-- <img src="../../assets/images/menu.png"> -->
-            <img src="http://localhost:8080/billiard/assets/images/menu.png" alt=""> 
-
-
+          <div class="menu" id="right">            
+                <app-menu [id]="right"></app-menu>
           </div>
         </div>
         
           <div class="footer">
-            <!-- <img src="../../assets/images/footer.png"> -->
             <img src="http://localhost:8080/billiard/assets/images/footer.png" alt=""> 
      
           </div>
@@ -40,8 +23,14 @@
     </div>
     
      <div class="uk-flex uk-flex-column uk-width-1-4 image-container">
-      <div class="image-list" uk-grid style="background:black">
-    
+      <div class="image-list" uk-grid>
+        <div class="image-box" *ngFor="let image of imageStored" id="{{image.id}}" (click)="addImage($event)">
+          <div class="remove-box" [hidden]="true"></div>
+          <img src="http://localhost:8080/api/{{image.imageName}}" id="{{image.imageGroup}}">
+        </div>
+        <div class="image-add" style="">
+          <span uk-icon="icon:plus; ratio:4" style="text-align: center"></span>
+        </div>
       </div>
 
     </div>

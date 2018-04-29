@@ -14,9 +14,42 @@
 
 .image-list{
     margin: 0;
-    border:0.2em #283237 solid;
     height:100%;
-    background: black;
+    background: #283237;
+    position: relative;
+    overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+
+}
+
+.dragged{
+    opacity: 0.4;
+}
+
+.image-list div{
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    border:  2px solid #283237; 
+    padding: 0; 
+    overflow:hidden;
+    position: relative;
+    width: 30%;
+    margin-left: 2%;
+    margin-top: 2%;
+    background: #fafbfb;
+    height: 160px;
+    cursor: pointer;
+}
+
+.clicked{
+    border:2px solid #ff4141 !important;
+}
+
+.disableEvent{
+    pointer-events: none;
 }
 
 .guest-wrap{
@@ -42,9 +75,7 @@
     overflow:hidden;
 }
 
-.uk-grid>.uk-grid-margin{
-    margin-top: 15px !important;
-}
+
 
 .uk-card-header{
     font-weight: bold; 
@@ -84,9 +115,31 @@
     height: 100vh;
 }
 
+.menu{
+    border:2px solid #ffffff00; 
+    position: relative;
+    margin-right: 3px;
+    cursor: pointer;
+}
+
+.menu::before{
+    position: absolute;
+    width:100%;
+    height: 100%;
+    background: #d1c0e0;
+    content: "Add Image";
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 4em;
+}
+
 .menu-left, .menu-right{
     display:flex;
     flex-direction:column;
+    height:100%;
 }
 
 .menu-left-top, .menu-right-top,
