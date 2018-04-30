@@ -29,7 +29,7 @@ public class FileUploadController {
     private static final String UPLOAD_FOLDER = "\\upload\\";
 
     @PostMapping("save")
-    public List<FileUploadModel> save(@RequestParam("imageFile") MultipartFile imageFile, 
+    public List<FileUploadModel> save(@RequestBody MultipartFile imageFile, 
                                         FileUploadModel fileUpload) throws IOException{
      
         String currentTime = String.valueOf(System.currentTimeMillis());
@@ -66,6 +66,12 @@ public class FileUploadController {
     @GetMapping("getImageToMenu/{imageGroup}")
     public List<FileUploadModel> getImageToMenu(@PathVariable String imageGroup){
         return fileUploadRepository.findByimageGroup(imageGroup);
+    }
+
+    @PostMapping("deleteImage")
+    public void deleteImage(@RequestBody Long imageId){
+        System.out.println(imageId);
+        fileUploadRepository.deleteById(imageId);
     }
     
 
