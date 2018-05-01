@@ -4,7 +4,7 @@
 
     <div class="uk-width-3-4">
       <div class="uk-flex uk-flex-column guest-container">
-        <div class="menu-container uk-flex uk-child-width-1-2" style="height:80%;">
+        <div class="menu-container uk-flex uk-child-width-1-2">
           <div class="menu" id="left">               
                 <app-menu [id]="left"></app-menu>
           </div>
@@ -14,7 +14,7 @@
         </div>
         
           <div class="footer">
-            <img src="http://localhost:8080/billiard/assets/images/footer.png" alt=""> 
+            <img src="../../assets/images/footer.png" alt=""> 
      
           </div>
         
@@ -24,11 +24,14 @@
     
      <div class="uk-flex uk-flex-column uk-width-1-4 image-container">
       <div class="image-list" uk-grid>
-        <div class="image-box" *ngFor="let image of imageStored" id="{{image.id}}" (click)="addImage($event)">
-          <div class="remove-box" [hidden]="true"></div>
-          <img src="http://localhost:8080/api/{{image.imageName}}" id="{{image.imageGroup}}">
+        <div class="image-box" *ngFor="let image of imageStored" id="{{image.id}}" 
+        (click)="addImage($event)" 
+        (mouseover)="showDeleteBox($event)"
+        (mouseleave)="hideDeleteBox($event)">
+          <div class="remove-box" hidden><span uk-icon="icon:trash; ratio:1.2" (click)="deleteImage(image.id)"></span></div>
+          <img src="http://localhost:8080/fileupload/{{image.imageName}}" id="{{image.imageGroup}}">
         </div>
-        <div class="image-add" style="">
+        <div class="image-add">
           <span uk-icon="icon:plus; ratio:4" style="text-align: center"></span>
         </div>
       </div>

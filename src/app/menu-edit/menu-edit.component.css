@@ -44,8 +44,33 @@
     cursor: pointer;
 }
 
+.remove-box{
+    background: #e6f9ff36 !important;
+    position: absolute !important;
+    z-index: 100;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    
+}
+.remove-box span{
+    top: 10px;
+    right: 10px;
+    position: absolute;
+}
+
+.remove-box span:hover{
+    color:red;
+}
+
 .clicked{
-    border:2px solid #ff4141 !important;
+    border:2px dashed #ff0037 !important;
+}
+
+.uk-dotnav{
+    position: absolute;
+    bottom: 0px;
+    align-self: center;
 }
 
 .disableEvent{
@@ -120,6 +145,7 @@
     position: relative;
     margin-right: 3px;
     cursor: pointer;
+    z-index: 1;
 }
 
 .menu::before{
@@ -238,7 +264,9 @@
     flex-direction: column;
     justify-content: flex-end;
     top:12px;
-
+    flex:1;
+    z-index: 0;
+    opacity: 0.2;
 }
 
 .footer img{

@@ -99,7 +99,7 @@ export class BilliyardComponent implements OnInit {
     let tempHour = currentTime.getHours();
     console.log(tempHour);
     if(tempHour>12){
-      this.result.hour = (tempHour-12).toString();
+      this.result.hour = this.makeTwoDigit((tempHour-12).toString()).toString()
       this.result.day = 'PM';
     }else{
       this.result.hour = tempHour===0?(12).toString():this.makeTwoDigit(tempHour).toString();

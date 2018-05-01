@@ -9,7 +9,7 @@ import { FileUpload } from '../model/fileUpload.model';
             <div class="menu-left" uk-slideshow="animation: fade; autoplay:true;">
                 <ul class="uk-slideshow-items">
                     <li *ngFor="let menuImage of menuImgageStored" style="background:#fafbfb">
-                        <img src="http://localhost:8080/api/{{menuImage.imageName}}" alt=""> 
+                        <img src="http://localhost:8080/fileupload/{{menuImage.imageName}}" alt=""> 
                     </li>
                     
                 </ul>

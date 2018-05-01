@@ -7,7 +7,7 @@ export class FileUploadService {
 
   constructor(private http:HttpClient){}
 
-  api = 'http://localhost:8080/api/';
+  api = 'http://localhost:8080/fileupload';
 
 
   public save(file:File){
@@ -26,6 +26,11 @@ export class FileUploadService {
 
   public getImageToMenu(imageGroup:string){
     return this.http.get(`${this.api}/getImageToMenu/${imageGroup}`);
+  }
+
+  public deleteImage(imageId:string){
+    console.log(imageId);
+    return this.http.post(`${this.api}/deleteImage`, imageId);
   }
 
 }

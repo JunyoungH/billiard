@@ -49,6 +49,8 @@ ngOnInit() {
     
     Observable.fromEvent(this.imageList, 'dragover').subscribe((event:any)=>{ 
       event.preventDefault();
+      event.stopPropagation();
+
       this.imageList.classList.add('dragged');
       if(event.target.classList[0]!=='image-list'){
         event.target.classList.add('disableEvent');
@@ -58,6 +60,8 @@ ngOnInit() {
 
     Observable.fromEvent(this.imageList, 'dragleave').subscribe((event:any)=>{
       event.preventDefault();
+      event.stopPropagation();
+
       this.imageList.classList.remove('dragged');
       
       console.log(event.target.classList[0]);
@@ -83,6 +87,7 @@ ngOnInit() {
     Observable.fromEvent(this.imageList, 'drop').subscribe((event:any)=>{
       event.stopPropagation();
       event.preventDefault();
+
       this.imageList.classList.remove('dragged');
       this.eventTarget = event.target;
 
@@ -126,6 +131,7 @@ ngOnInit() {
   }
 
   addImage(event){
+    event.preventDefault();
     let target = event.currentTarget;
     if(this.imagePreviewId){
       if(target.querySelector('img').id === this.imagePreviewId){
@@ -152,7 +158,24 @@ ngOnInit() {
       (value:any, key)=> value.querySelector('img').id===this.imagePreviewId?
                           value.classList.add('clicked'):value.classList.remove('clicked'));
   }
+  
+  showDeleteBox(event){
+    event.preventDefault();
+    event.currentTarget.querySelector('.remove-box').hidden = false;
+  }
 
+  hideDeleteBox(event){
+    event.preventDefault();
+    event.currentTarget.querySelector('.remove-box').hidden = true;
+  }
 
+  deleteImage(imageId){
+    console.log(imageId);
+    this.fileUploadService.deleteImage(imageId).subscribe(()=>{
+      document.getElementById(imageId).hidden = true;
+      this.menuComponent.forEach(value=>value.setMenuImage());
+    });
+   
+  }
 
 }
