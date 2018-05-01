@@ -27,10 +27,11 @@ export class MenuComponent implements OnInit {
 
 
 ngOnInit() {
-    
+
     this.fileUploadService.getImageToMenu(this.id).subscribe((result:any)=>{
         this.menuImgageStored = result; 
-
+        console.log(this.id);
+        console.log(result);
     });
    
 }

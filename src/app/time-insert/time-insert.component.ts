@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChildren, QueryList, ViewChild, AfterViewInit, AfterViewChecked, AfterContentChecked} from '@angular/core';
 import { BilliyardComponent } from '../billiyard/billiyard.component';
 import { BilliyardGuestComponent } from '../billiyard-guest/billiyard-guest.component';
-import { QueListComponent } from '../que-list/que-list.component'; 
+import { QueListComponent } from '../que-list/que-list.component';
+import { MenuComponent } from '../menu-edit/menu.component'; 
  
 import { Router } from '@angular/router';
 import { Result } from '../model/result.model';
@@ -30,6 +31,8 @@ export class TimeInsertComponent implements OnInit{
 
   href:string;
   table:string;
+  left:string = 'left';
+  right:string = 'right';
 
   numbers:any;
 

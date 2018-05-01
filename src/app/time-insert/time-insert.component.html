@@ -29,23 +29,10 @@
     <div class="uk-width-3-4">
       <div class="uk-flex uk-flex-column guest-container">
         <div class="menu-container uk-flex uk-child-width-1-2" style="height:80%;">
-          <div class="menu-left" uk-slideshow="animation: fade; autoplay: true;">
-       
-              <ul class="uk-slideshow-items">
-                <li>
-                  <img src="http://localhost:8080/billiard/assets/images/promo1.png" alt=""> 
-                </li>
-                <li>
-                  <img src="http://localhost:8080/billiard/assets/images/promo2.png" alt=""> 
-                </li>
-              </ul>
 
-          </div>
-          <div class="menu-right">
-
-            <img src="http://localhost:8080/billiard/assets/images/menu.png" alt=""> 
-   
-          </div>
+          <app-menu [id]="left"></app-menu>
+          <app-menu [id]="right"></app-menu>
+  
         </div>
         
           <div class="footer">

@@ -166,6 +166,7 @@
     display:flex;
     flex-direction:column;
     height:100%;
+    margin-right: 2px;
 }
 
 .menu-left-top, .menu-right-top,
