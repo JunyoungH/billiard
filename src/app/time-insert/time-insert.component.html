@@ -14,7 +14,10 @@
           </app-billiyard>
   
       </div>
-      <button class="uk-button uk-button-danger uk-button-small" id="reset" (click)="reset()">reset</button>
+      <div id="sub-bttns">
+        <button class="uk-button uk-button-danger uk-button-small reset" (click)="reset()">RESET</button>
+        <button class="uk-button uk-button-primary uk-button-small edit" (click)="edit()">MENU EDIT</button>
+      </div>
       <div class="uk-width-1-5@s" style="padding:5px; width:25%">
     <app-que-list [href]="href" (submitList)="sendName($event)"></app-que-list>
   </div>
@@ -30,107 +33,25 @@
        
               <ul class="uk-slideshow-items">
                 <li>
-                  <!-- <img src="../../assets/images/promo1.png" alt=""> -->
                   <img src="http://localhost:8080/billiard/assets/images/promo1.png" alt=""> 
                 </li>
                 <li>
-                  <!-- <img src="../../assets/images/promo2.png" alt=""> -->
                   <img src="http://localhost:8080/billiard/assets/images/promo2.png" alt=""> 
                 </li>
               </ul>
-        
-            <!-- <div class="menu-left-top uk-card">
-              <div class="uk-card-header menu-tap" style="flex:1;"><span class="left">BEER</span>・<span class="right">$8</span></div>
-              <div class="menu-left-top-image">
-                <img src="../../assets/images/menu1.jpg">
-              </div>
-            </div>
-            
-            <div class="menu-left-bottom">
-              <div class="uk-card-header menu-tap" style="flex:1;"><span class="left">CIDER</span>・<span class="right">$8</span></div>
-              <div class="menu-left-bottom-image">
-                  <img src="../../assets/images/menu2.jpg">
-                </div>
-            </div> -->
-          
+
           </div>
           <div class="menu-right">
-            <!-- <img src="../../assets/images/menu.png"> -->
-            <img src="http://localhost:8080/billiard/assets/images/menu.png" alt=""> 
-            <!-- <div class="menu-right-top">
-              <div class="uk-card-header menu-tap"><span class="left">CAFE</span>・<span class="right">$4</span></div>
-              <div class="menu-content">
-                <div class="menu-content-image"><img src="../../assets/images/comming-soon.png"></div>
-                <div>
-                  <div class="menu-name">COFFEE</div>
-                  <div class="menu-detail">AMERICANO, LATTE, CAPPUCINO, MOCHA, KOREAN MIX</div>
-                </div>
-                <div>
-                  <div class="menu-name">MILK</div>
-                  <div class="menu-detail">CHOCOLATE, GREEN TEA</div>
-                </div>
-                  <div>
-                    <div class="menu-name">TEA</div>
-                    <div class="menu-detail">YUZU, HONEY GINGER,<BR> LEMONGRASS, ENGLISH BREAKFAST, EARL GREY</div>
-                  </div>
-                  <div>
-                    <div class="menu-name">SODA BUNGABERG</div>
-                    <div class="menu-detail">LEMON LIME & BITTERS, ROOT BEER, GINGER BEER</div>
-                  </div>
-              </div>
-            </div>
-            
-            <div class="menu-right-bottom">
-              <div class="uk-card-header menu-tap"><span class="left">SNACK</span>・<span class="right">$4</span></div>
-              <div class="menu-content">
-                  <div class="menu-content-image" style="width:35%; display:none;"><img src="../../assets/images/comming-soon.png"></div>
-                    <div>
-                      <div class="menu-name">SNYDER ON HANDOVER</div>
-                      <div class="menu-detail">JALAPENOS, HONEY MUSTARD & ONION, CHEDDAR CHEESE</div>
-                    </div>
-                    <div class="menu-snack-bottom">
-                          <div style="text-decoration: line-through; margin-right:1em;">
-                            <div class="menu-name">MR. </div>
-                            <div class="menu-detail">PORK</div>
-                          </div>
-                          <div>
-                              <div class="menu-name">THAI PEANUTS </div>
-                              <div class="menu-detail">WASABI, BBQ, CHICKEN</div>
-                          </div>
-                    </div>
-      
-              </div>
-            </div> -->
 
+            <img src="http://localhost:8080/billiard/assets/images/menu.png" alt=""> 
+   
           </div>
         </div>
         
           <div class="footer">
-            <!-- <img src="../../assets/images/footer.png"> -->
+
             <img src="http://localhost:8080/billiard/assets/images/footer.png" alt=""> 
-            <!-- <div class="footer-left">
-              <div class="a" style="font-size: 1.3em;">사구</div>
-              <div class="b">
-                <div class="b-1">
-                  <span>$4 FOR EVERY 10 MINUTES</span>
-                  <span>FLAT $15 UNDER 30 MINUTES</span>
-                </div> 
-                <div class="b-2">
-                  <span>10분당 $4</span>
-                  <span>기본 요금 $15</span>
-                </div>
-              </div>
-              <div class="c">CAROM <br> BILLIARD</div>
-            </div>
-            <div class="footer-right">
-              <div>
-                <img src="../../assets/images/ThirstyFourBalls_Vertical_Logo-01.png" class="logo-1">
-              </div> 
-              <div>
-                <img src="../../assets/images/ThirstyFourBalls_Mascot_front_coloured.png" class="logo-2">
-              </div>
-  
-            </div> -->
+ 
           </div>
         
       </div>

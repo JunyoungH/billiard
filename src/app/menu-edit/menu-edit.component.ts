@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/rx';
 import { FileUploadService } from '../service/file-upload.service';
 import { FileUpload } from '../model/fileUpload.model';
 import { MenuComponent } from './menu.component';
+import { fadeInAnimation } from '../animations/fade-in';
 
 @Component({
   selector: 'app-menu-edit',

@@ -120,4 +120,8 @@ export class TimeInsertComponent implements OnInit{
     this.result.resetFlag = true;
     this.sendName(this.result);
   }
+
+  edit(){
+    this.router.navigateByUrl('edit');
+  }
 }
