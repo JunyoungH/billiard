@@ -2,7 +2,7 @@
 
 Angular 5 /Spring Boot / Websocket / SocketJS 
 
-[Admin View - insert current player name and starting timing, insert name on the wating list]
+[Admin View - insert current player name and starting timing, insert name on the waiting list]
 ![admin_page](https://user-images.githubusercontent.com/6167859/39475587-57fec92c-4d8b-11e8-9b80-8ec5302a2f97.jpg)
 
 [Guest View - show current player and how much time played, waing list, show advertisement, menu images slide]
