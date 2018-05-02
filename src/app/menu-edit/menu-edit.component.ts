@@ -111,7 +111,11 @@ ngOnInit() {
       this.imagePreviewId = event.currentTarget.id;
       this.imageBox = document.querySelectorAll('.image-box');
       
-      Array.from(this.imagePreview, (value:any, key)=>value.classList.remove('clicked'));
+      Array.from(this.imagePreview, (value:any, key)=>{
+        value.classList.add('blurred');
+        value.classList.remove('clicked');
+      });
+      event.currentTarget.classList.remove('blurred');
       event.currentTarget.classList.add('clicked');
 
       console.log(this.imageBox);
@@ -156,8 +160,14 @@ ngOnInit() {
 
   setCheckValue(){
     Array.from(this.imageBox, 
-      (value:any, key)=> value.querySelector('img').id===this.imagePreviewId?
-                          value.classList.add('clicked'):value.classList.remove('clicked'));
+      (value:any, key)=> {
+        if(value.querySelector('img').id===this.imagePreviewId){
+          value.classList.remove('grayed');
+        }else{
+          value.classList.add('grayed');
+        }
+      });
+
   }
   
   showDeleteBox(event){

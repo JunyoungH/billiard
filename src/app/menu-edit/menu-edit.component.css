@@ -64,7 +64,16 @@
 }
 
 .clicked{
-    border:2px dashed #ff0037 !important;
+    box-shadow:0px 2px 35px -6px black;
+}
+
+.blurred{
+    filter:blur(3px) grayscale(100%);
+}
+
+.grayed{
+    filter:grayscale(80%);
+    opacity: 0.7;
 }
 
 .uk-dotnav{
