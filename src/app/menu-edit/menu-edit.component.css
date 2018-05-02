@@ -51,6 +51,8 @@
     width: 100% !important;
     height: 100% !important;
     margin: 0 !important;
+    background: #8700ff33 !important;
+    opacity: 0.7;
     
 }
 .remove-box span{
